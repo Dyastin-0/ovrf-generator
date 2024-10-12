@@ -9,9 +9,9 @@ class PDF extends FPDF {
       $this->setFont('Arial', '', 8);
       $this->SetMargins(15, 15);
 
-      $this->Image('../assets/images/cdm-logo.png', 50, 12, -700);
+      $this->Image('../assets/images/cdm-logo.png', 45, 12, -750);
 
-      $this->setFont('Arial', '', 20);
+      $this->setFont('Arial', '', 24);
       $this->Cell(0, 20, 'Colegio de Montalban', 0, 1, 'C');
       
       $this->setFont('Arial', '', 6);

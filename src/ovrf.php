@@ -22,7 +22,12 @@
         $pdf->setFont('Arial', '', 6);
         $pdf->Cell(0, 4, $semester . " Semester " . "AY " . $year, 0, 1, 'C');
 
-        $pdf->Ln(5);
+        $pdf->SetWidths(([45, 45, 40, 23, 27]));
+        $pdf->FancyRow(
+            ["", "", "", "Date and time printed: ", date("m/d/Y h:i A")],
+            ["0", "0", "0", "0", "0"],
+            ["L", "L", "L", "L", "R"],
+        );
 
         $pdf->SetWidths([25, 65, 25, 65]);
         $pdf->FancyRow(
@@ -106,7 +111,7 @@
         $pdf->SetXY(115, 180);
         $pdf->MultiCell(70, 5, "(NOTE: Above installment schedule may change based on actual payment and after enrolment adjustments.)", 0, "C");
 
-        $pdf->SetXY(15, 212);
+        $pdf->SetXY(15, 217);
         $pdf->Cell(0, 5, "___________________________________________________________________________",0, "C");
 
         $pdf->SetWidths([45, 45]);
@@ -123,19 +128,19 @@
 
         $pdf->SetWidths([45, 45]);
         $pdf->FancyRow(
-            ["Student load and verified & confirmed by: ", "___________________________________"],
+            ["Student load verified & confirmed by: ", "___________________________________"],
             ["0", "0"],
             ["L", "R"],
             ["", "B"],
         );
 
-        $pdf->SetX(47);
+        $pdf->SetX(49);
         $pdf->SetFont("Arial","",6);
         $pdf->MultiCell(70, 5, $registrarRepresentee, 0, "C");
 
         $pdf->SetX(49);
         $pdf->SetFont("Arial","I",6);
-        $pdf->MultiCell(70, 5, "Registar", 0, "C");
+        $pdf->MultiCell(70, 5, "Registrar", 0, "C");
 
         $pdf->SetXY(110, 225);
         $pdf->SetTextColor(169,169,169);

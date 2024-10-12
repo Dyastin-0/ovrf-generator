@@ -7,7 +7,7 @@
   "Regular",
   "1st",
   "2024-2025",
-  "20240001",
+  "21-00000",
   "Bachelor of Science in Information Technology",
   "1st",
   [["Math 1", "Mathematics 1", "MWF 8:00-9:00", "A101", "3", "3", "3", "500", "1500"],
