@@ -53,7 +53,7 @@
 
         $pdf->SetWidths([25, 65, 35, 55]);
         $pdf->FancyRow(
-            ["Students's signature ", "______________________", "Parent's/Guardian's signature", "______________________"], 
+            ["Students's Signature ", "______________________", "Parent's/Guardian's Signature", "______________________"], 
             ["0", "0", "0", "0"],
             ["L", "L", "L", "L"],  
             ["", "", "", ""]
@@ -68,20 +68,28 @@
             ["C", "C", "C", "C", "C", "C", "C", "C", "C"],
             ["", "", "", "", "", "", "", "", ""],
         );
+        $totalUnits = 0;
         foreach ($subjects as $subject) {
+            $totalUnits += $subject[5];
             $pdf->FancyRow(
                 $subject,
                 ["1", "1", "1", "1", "1", "1", "1", "1", "1"],
-                ["L", "L", "L", "L", "L", "L", "L", "L", "L"],
+                ["C", "C", "C", "C", "C", "C", "C", "C", "C"],
                 ["", "", "", "", "", "", "", "", ""],
             );
         }
+
+        $pdf->SetWidths([115, 15, 15, 15, 20]);
+        $pdf->FancyRow(["TOTAL LOAD UNITS", $totalUnits, "", "", ""],
+            ["1", "1", "1", "1", "1"],
+            ["R", "C", "L", "L", "L"],
+        );
 
         $pdf->Ln(5);
 
         $pdf->SetWidths([90, 90]);
 
-        $pdf->FancyRow(["=FEE DETAILS=", "=FEE DETAILS="],
+        $pdf->FancyRow(["=FEE DETAILS=", "=PAYMENT DETAILS="],
             ["0", "0"],
             ["C", "C"],
         );
@@ -108,10 +116,11 @@
         }
 
         $pdf->SetFont("Arial","",6);
-        $pdf->SetXY(115, 180);
+        $pdf->SetXY(115, 180); 
         $pdf->MultiCell(70, 5, "(NOTE: Above installment schedule may change based on actual payment and after enrolment adjustments.)", 0, "C");
 
-        $pdf->SetXY(15, 217);
+        
+        $pdf->SetXY(15, 222);/*this should be adjusted when modifying the layout above it; poor solution*/
         $pdf->Cell(0, 5, "___________________________________________________________________________",0, "C");
 
         $pdf->SetWidths([45, 45]);
