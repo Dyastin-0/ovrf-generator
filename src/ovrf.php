@@ -108,8 +108,12 @@ function generateOVRF(
     }
 
     $formattedTotalFee = "Php " . number_format($totalFee, 2);
+    
+    $totalAmountDue = $totalFee + $oldAccounts;
+    $formattedTotalAmountDue = "Php " . number_format($totalAmountDue, 2);
 
-    $combinedPaymentDetails[] = ["Account paid", $formattedTotalFee];
+    /*Injecting additional details at the payment.*/
+    $combinedPaymentDetails[] = ["ACCOUNT PAID", $formattedTotalAmountDue];
     $combinedPaymentDetails[] = ["(Business Office) Receipt printed by: ", ""];
 
     $pdf->SetWidths([45, 45, 45, 45]);
@@ -151,6 +155,12 @@ function generateOVRF(
 
     $pdf->FancyRow(
         ["OLD ACCOUNTS", "Php " . number_format($oldAccounts, 2)],
+        ["0", "0"],
+        ["L", "R"],
+        ["", "B"]
+    );
+
+    $pdf->FancyRow(["TOTAL AMOUNT DUE", $formattedTotalAmountDue],
         ["0", "0"],
         ["L", "R"],
         ["", "B"]
