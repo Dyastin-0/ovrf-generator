@@ -2,19 +2,19 @@
 require("pdf.php");
 
 function generateOVRF(
-    $name,          /*Student's full name*/
-    $gender,        /*Male/Female*/
-    $studentType,   /*Regular/Irregular*/
-    $semester,      /*1st/2nd*/
-    $year,          /*YYYY-YYYY*/
-    $studentID,     /*Student ID*/
-    $course,        /*Course/Major*/
-    $yearLevel,     /*1st/2nd/3rd/4th*/
-    $subjects,      /*An array of: ["Subject", ""Subject title", "Section/Room", "Units", "Total Units", "Units", "Rate/Unit", "Total subject fee"]*/
-    $feeDetails,    /*An array of: ["Fee name", "Fee"]*/   
-    $paymentDetails,/* ["PAYMENT MODE", "Mode"], ["ACCOUNT PAID", "Paid"], ["DATE PAID", "Date"]*/
-    $oldAccounts,   /*An array of: ["Assessment", "Amount"]*/
-    $registrarRepresentee /*Registrar's representee*/
+    String $name,
+    String $gender,
+    String $studentType,
+    String $semester,
+    String $year,
+    String $studentID,
+    String $course,
+    String $yearLevel,
+    array $subjects,
+    array $feeDetails,
+    array $paymentDetails,
+    int $oldAccounts,
+    String $registrarRepresentee
 ) {
     $pdf = new PDF();
 
@@ -103,6 +103,7 @@ function generateOVRF(
 
     $totalFee = 0;
     foreach ($feeDetails as $fee) {
+        //Should not be needed if the fees are already a number.
         $cleanedFee = preg_replace('/[^\d.]/', '', $fee[1]);
         $totalFee += (float)$cleanedFee;
     }
